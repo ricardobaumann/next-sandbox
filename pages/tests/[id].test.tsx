@@ -6,7 +6,7 @@ import {render, screen} from "@testing-library/react";
 
 describe("getServerSideProps", ()=> {
 
-    it("should return test details",()=> {
+    it("should return test details on existing",()=> {
         const context = {
             params: { id: "100" } as ParsedUrlQuery
         };
@@ -20,6 +20,16 @@ describe("getServerSideProps", ()=> {
                 }
             });
     })
+
+    it('should return not found on non existing', () => {
+        const context = {
+            params: { } as ParsedUrlQuery
+        };
+        expect(getServerSideProps(context as GetServerSidePropsContext))
+            .toStrictEqual({
+                notFound: true
+            });
+    });
 
 })
 
