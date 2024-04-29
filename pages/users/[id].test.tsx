@@ -12,8 +12,8 @@ mockRouter.useParser(createDynamicRouteParser([
 vi.mock("../../app/lib/users/create-user");
 
 it("Should render details pagen",async ()=> {
-    
     let getUserFn = await import("../../app/lib/users/create-user");
+
     getUserFn.default = vi.fn().mockReturnValue({id: "1", name: "opa"});
 
      await mockRouter.push("/users/2");
