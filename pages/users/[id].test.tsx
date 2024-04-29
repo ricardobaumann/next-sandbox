@@ -11,13 +11,13 @@ mockRouter.useParser(createDynamicRouteParser([
 
 vi.mock("../../app/lib/users/create-user");
 
-it("Should render details page with default function",async ()=> {
+it("Should render details pagen",async ()=> {
     
     let getUserFn = await import("../../app/lib/users/create-user");
-    getUserFn.default = await vi.fn().mockReturnValue({id: "1", name: "opa"});
+    getUserFn.default = vi.fn().mockReturnValue({id: "1", name: "opa"});
 
-     mockRouter.push("/users/2");
-     render(<UserDetail></UserDetail>);
+     await mockRouter.push("/users/2");
+     render(<UserDetail/>);
  
      expect(screen.getByText("user id 2")).toBeDefined();
      expect(screen.getByText("user name opa")).toBeDefined();
@@ -25,10 +25,10 @@ it("Should render details page with default function",async ()=> {
 
  it("Should render details page with default function2",async ()=> {
     let getUserFn = await import("../../app/lib/users/create-user");
-    getUserFn.default = await vi.fn().mockReturnValue({id: "1", name: "fooba"});
+    getUserFn.default = vi.fn().mockReturnValue({id: "1", name: "fooba"});
 
-     mockRouter.push("/users/3");
-     render(<UserDetail></UserDetail>);
+     await mockRouter.push("/users/3");
+     render(<UserDetail/>);
  
      expect(screen.getByText("user id 3")).toBeDefined();
      expect(screen.getByText("user name fooba")).toBeDefined();
